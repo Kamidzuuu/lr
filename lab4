@@ -1,0 +1,14 @@
+copy Wine(id, price)
+from 'C:\load\test12.csv'
+delimiter ';' csv Header;
+select * from wine;
+
+UPDATE wine SET price= 2000 where id = 3;
+
+UPDATE wine SET price = 2200 where id > 3;
+select * from wine;
+
+DELETE FROM wine WHERE producer  = 'золота нива';
+DELETE FROM wine  WHERE producer IN ('Золота нива', 'Грузинське вино');
+
+TRUNCATE TABLE wine CASCADE;

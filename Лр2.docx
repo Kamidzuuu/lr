@@ -1,0 +1,46 @@
+--DROP TABLE IF EXISTS shop, Dealer, supply, wine;
+
+CREATE TABLE IF NOT EXISTS shop(
+    id int primary key not null,
+	address varchar(20) not null,
+	phone char(13),
+	name char(10) not null,
+	id_dealer int
+);
+
+CREATE TABLE IF NOT EXISTS Dealer (
+	id int primary key not null,
+	name char(10) not null,
+	pasp_info varchar(20) not null,
+	supply_info varchar(20) not null,
+	phone char(13),
+	id_shop int not null,
+	constraint fc_Dealer_Shop foreign key (id_shop) references shop (id)
+);
+
+CREATE TABLE IF NOT EXISTS wine (
+    id int primary key not null,
+	date_prod char(10) not null,
+	price real not null,
+	producer varchar(20) not null,
+	kind varchar(20) not null,
+	id_dealer int
+
+);
+
+CREATE TABLE IF NOT EXISTS supply (
+    id int primary key not null,
+	date_sup varchar(20) not null,
+	count_ int not null,
+	address_sup varchar(20) not null,
+	id_dealer int not null,
+	id_wine int not null,
+	constraint fc_supply_wine foreign key (id_wine) references wine (id)
+
+);
+
+
+--INTO Dealer VALUES (1, 'name', 'pasp_info', 'supply_info','phone' );
+--INSERT INTO wine VALUES (2,'date_prod',2000,'producer','kind',1);
+--INSERT INTO supply VALUES(3,'date_sup',2000,'address_sup',2 );
+--INSERT INTO shop VALUES(4,'address','phone','name',3);
